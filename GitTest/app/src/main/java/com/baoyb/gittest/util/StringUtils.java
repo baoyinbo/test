@@ -1,6 +1,5 @@
 package com.baoyb.gittest.util;
 
-import android.support.annotation.NonNull;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
