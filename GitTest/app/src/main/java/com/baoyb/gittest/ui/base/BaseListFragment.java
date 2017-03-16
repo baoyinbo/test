@@ -26,10 +26,10 @@ public abstract class BaseListFragment extends BaseFragment{
     public void initView(Bundle savedInstanceState) {
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        //设置布局管理器
-        recyclerView.setLayoutManager(layoutManager);
         //设置为垂直布局，这也是默认的
         layoutManager.setOrientation(OrientationHelper.VERTICAL);
+        //设置布局管理器
+        recyclerView.setLayoutManager(layoutManager);
         //设置分隔线
 //        recyclerView.addItemDecoration(new DividerGridItemDecoration(getActivity()));
         //设置增加或删除条目的动画
@@ -57,8 +57,9 @@ public abstract class BaseListFragment extends BaseFragment{
             public void onLoadMoreRequested() {
                 onLoadMoreListener();
             }
-        }, recyclerView);
-        recyclerView.setAdapter(adapter);
+        });
+        this.adapter.openLoadMore(true);
+        recyclerView.setAdapter(this.adapter);
     }
 
     /**

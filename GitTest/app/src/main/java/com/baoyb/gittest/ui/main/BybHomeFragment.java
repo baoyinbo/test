@@ -1,10 +1,12 @@
 package com.baoyb.gittest.ui.main;
 
 import android.os.Bundle;
-import com.baoyb.gittest.R;
+import android.view.View;
+
 import com.baoyb.gittest.model.BybHomeNewModel;
 import com.baoyb.gittest.ui.base.BaseListFragment;
 import com.baoyb.gittest.ui.news.adapter.BybHomeNewsAdapter;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,14 +19,16 @@ import java.util.List;
 public class BybHomeFragment extends BaseListFragment {
     private BybHomeNewsAdapter newsAdapter;
     private List<BybHomeNewModel> homeNewModelList;
-    @Override
-    public int getLayoutId() {
-        return R.layout.byb_fra_home;
-    }
 
     @Override
     protected void onCreateListView(Bundle savedInstanceState) {
         newsAdapter = new BybHomeNewsAdapter(new ArrayList<BybHomeNewModel>());
+        newsAdapter.setOnRecyclerViewItemChildClickListener(new BaseQuickAdapter.OnRecyclerViewItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
+
+            }
+        });
         setAdapter(newsAdapter);
         homeNewModelList = new ArrayList<BybHomeNewModel>();
         test();

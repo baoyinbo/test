@@ -2,9 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:paddingLeft="15dp"
     android:paddingRight="15dp"
+    android:layout_gravity="center_vertical"
     android:background="?attr/selectableItemBackgroundBorderless">
     <TextView
         style="@style/newsListTitle"
@@ -14,6 +15,7 @@
     
     <LinearLayout
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
@@ -31,4 +33,10 @@
             android:layout_marginLeft="20dp"
             android:text="3小时前" />
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divide_height"
+        android:background="@color/divide_gray">
+
+    </View>
 </LinearLayout>

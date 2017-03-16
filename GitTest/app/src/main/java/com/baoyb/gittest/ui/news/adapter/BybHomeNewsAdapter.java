@@ -11,7 +11,7 @@ import java.util.List;
  * Created by baoyb on 2017/3/16.
  */
 
-public class BybHomeNewsAdapter extends BaseQuickAdapter<BybHomeNewModel, BaseViewHolder> {
+public class BybHomeNewsAdapter extends BaseQuickAdapter<BybHomeNewModel> {
 
 
     public BybHomeNewsAdapter(List<BybHomeNewModel> data) {

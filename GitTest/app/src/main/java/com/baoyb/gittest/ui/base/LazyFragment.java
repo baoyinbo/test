@@ -139,9 +139,9 @@ public abstract class LazyFragment extends Fragment {
     public abstract int getLayoutId();
 
     protected void lazyLoad(Bundle savedInstanceState) {
-        if (!isPrepared || !isVisible || !isFirstLoad) {
-            return;
-        }
+//        if (!isPrepared || !isVisible || !isFirstLoad) {
+//            return;
+//        }
         isFirstLoad = false;
         initView(savedInstanceState);
     }
