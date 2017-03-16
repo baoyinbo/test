@@ -1,4 +1,4 @@
-package com.baoyb.gittest.base;
+package com.baoyb.gittest.ui.base;
 
 
 /**
@@ -6,5 +6,6 @@ package com.baoyb.gittest.base;
  */
 
 public abstract class BaseFragment extends LazyFragment {
+
 
 }

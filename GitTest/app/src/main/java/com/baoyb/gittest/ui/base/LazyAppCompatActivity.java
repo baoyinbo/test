@@ -1,4 +1,4 @@
-package com.baoyb.gittest.base;
+package com.baoyb.gittest.ui.base;
 
 import android.support.v7.app.AppCompatActivity;
 

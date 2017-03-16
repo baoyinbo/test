@@ -1,4 +1,4 @@
-package com.baoyb.gittest.main;
+package com.baoyb.gittest.ui.main;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,7 +14,7 @@ import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.baoyb.gittest.R;
-import com.baoyb.gittest.base.BaseFragment;
+import com.baoyb.gittest.ui.base.BaseFragment;
 
 /**
  * Created by baoyb on 2017/3/9.

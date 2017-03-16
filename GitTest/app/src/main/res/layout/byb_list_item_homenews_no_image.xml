@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:background="?attr/selectableItemBackgroundBorderless">
+    <TextView
+        style="@style/newsListTitle"
+        android:id="@+id/tvNewsTitle"
+        android:layout_marginTop="15dp"
+        android:text="今日头条新闻"/>
+    
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tvNewsSrc"
+            style="@style/newsListTips"
+            android:text="网易新闻" />
+        <TextView
+            android:id="@+id/tvNewsCountComment"
+            style="@style/newsListTips"
+            android:layout_marginLeft="20dp"
+            android:text="100评论" />
+        <TextView
+            android:id="@+id/tvNewsTime"
+            style="@style/newsListTips"
+            android:layout_marginLeft="20dp"
+            android:text="3小时前" />
+    </LinearLayout>
+</LinearLayout>

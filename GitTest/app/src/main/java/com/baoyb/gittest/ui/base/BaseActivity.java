@@ -1,4 +1,4 @@
-package com.baoyb.gittest.base;
+package com.baoyb.gittest.ui.base;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;

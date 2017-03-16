@@ -1,18 +1,18 @@
-package com.baoyb.gittest.main;
+package com.baoyb.gittest.ui.main;
 
 import android.os.Bundle;
 
 import com.baoyb.gittest.R;
-import com.baoyb.gittest.base.BaseFragment;
+import com.baoyb.gittest.ui.base.BaseFragment;
 
 /**
  * Created by baoyb on 2017/3/10.
  */
 
-public class BybHomeFragment extends BaseFragment {
+public class BybAttentionFragment extends BaseFragment {
     @Override
     public int getLayoutId() {
-        return R.layout.byb_fra_home;
+        return R.layout.byb_fra_attention;
     }
 
     @Override
