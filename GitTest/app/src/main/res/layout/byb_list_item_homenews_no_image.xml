@@ -6,7 +6,7 @@
     android:paddingLeft="15dp"
     android:paddingRight="15dp"
     android:layout_gravity="center_vertical"
-    android:background="?attr/selectableItemBackgroundBorderless">
+    android:background="?attr/selectableItemBackground">
     <TextView
         style="@style/newsListTitle"
         android:id="@+id/tvNewsTitle"

@@ -7,5 +7,7 @@ package com.baoyb.gittest.ui.base;
 
 public abstract class BaseFragment extends LazyFragment {
 
+    protected void showToast(String s) {
 
+    }
 }
