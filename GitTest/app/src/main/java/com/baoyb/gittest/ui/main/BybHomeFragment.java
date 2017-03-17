@@ -3,10 +3,16 @@ package com.baoyb.gittest.ui.main;
 import android.os.Bundle;
 import android.view.View;
 
+<<<<<<< HEAD
 import com.baoyb.gittest.commen.BybDefines;
+=======
+import com.baoyb.gittest.R;
+>>>>>>> origin/master
 import com.baoyb.gittest.model.BybHomeNewModel;
+import com.baoyb.gittest.ui.base.BaseFragment;
 import com.baoyb.gittest.ui.base.BaseListFragment;
 import com.baoyb.gittest.ui.news.adapter.BybHomeNewsAdapter;
+import com.baoyb.gittest.util.StatusBarUtil;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
 import java.util.ArrayList;
@@ -17,6 +23,7 @@ import java.util.List;
  * Created by baoyb on 2017/3/10.
  */
 
+<<<<<<< HEAD
 public class BybHomeFragment extends BaseListFragment {
     private int pageNum = 1;    //当前页数
     private BybHomeNewsAdapter newsAdapter;
@@ -63,4 +70,18 @@ public class BybHomeFragment extends BaseListFragment {
     protected void onLoadMoreListener() {
         test(++ pageNum);
     }
+=======
+public class BybHomeFragment extends BaseFragment {
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.byb_fra_home;
+    }
+
+    @Override
+    public void initView(Bundle savedInstanceState) {
+        initSystemBarTint(false, R.color.background_red);
+    }
+
+>>>>>>> origin/master
 }

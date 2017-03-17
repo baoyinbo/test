@@ -8,7 +8,7 @@
     android:layout_gravity="center_vertical"
     android:background="?attr/selectableItemBackground">
     <TextView
-        style="@style/newsListTitle"
+        style="@style/textNewsListTitle"
         android:id="@+id/tvNewsTitle"
         android:layout_marginTop="15dp"
         android:text="今日头条新闻"/>
@@ -20,16 +20,16 @@
         android:layout_height="wrap_content">
         <TextView
             android:id="@+id/tvNewsSrc"
-            style="@style/newsListTips"
+            style="@style/textNewsListTips"
             android:text="网易新闻" />
         <TextView
             android:id="@+id/tvNewsCountComment"
-            style="@style/newsListTips"
+            style="@style/textNewsListTips"
             android:layout_marginLeft="20dp"
             android:text="100评论" />
         <TextView
             android:id="@+id/tvNewsTime"
-            style="@style/newsListTips"
+            style="@style/textNewsListTips"
             android:layout_marginLeft="20dp"
             android:text="3小时前" />
     </LinearLayout>

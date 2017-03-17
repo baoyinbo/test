@@ -4,18 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:background="?attr/selectableItemBackgroundBorderless">
+    android:background="?attr/selectableItemBackground">
     <ImageView
         android:id="@+id/ivTabItem"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_marginTop="2dp"
         android:src="@mipmap/tab_home"
         android:scaleType="fitXY"/>
     <TextView
         android:id="@+id/tvTabItem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/textTabItem"
         android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:textColor="@drawable/byb_text_red_gray_selector"
         android:text="@string/tab_home"/>
 </LinearLayout>

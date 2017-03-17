@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="white">#555555</color>
+    <!--波纹点击颜色-->
+    <!--白色点击色-->
+    <color name="ripple_white">#7faaaaaa</color>
+    <color name="selected_white">#cc555555</color>
+
+    <color name="background">#ff505050</color>
+    <color name="head_background">#ff222222</color>
+    <color name="divide_gray">#ff303030</color>
+    <color name="text_white">#ffffff</color>
+    <color name="text_black">#333333</color>
+    <color name="text_gray">#444444</color>
+    <color name="text_light_gray">#444444</color>
+    <color name="text_red">#ed4c4d</color>
+</resources>

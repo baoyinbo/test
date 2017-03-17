@@ -1,18 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--字体相关主题-->
+    <!--tab-->
+    <style name="textTabItem">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text_gray</item>
+        <item name="android:textSize">@dimen/text_12dp</item>
+    </style>
     <!--新闻标题-->
-    <style name="newsListTitle">
+    <style name="textNewsListTitle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/text_black</item>
         <item name="android:textSize">@dimen/text_18dp</item>
     </style>
-    <style name="newsListTips">
+    <!--新闻其他提示文字-->
+    <style name="textNewsListTips">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/text_gray</item>
         <item name="android:textSize">@dimen/text_10dp</item>
+    </style>
+    <!--我的 相关item-->
+    <style name="textMineItem">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text_black</item>
+        <item name="android:textSize">@dimen/text_14dp</item>
     </style>
 
 </resources>

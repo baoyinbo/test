@@ -1,12 +1,25 @@
 package com.baoyb.gittest.ui.base;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewCompat;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
+
+import com.baoyb.gittest.R;
+import com.baoyb.gittest.util.StatusBarUtil;
+import com.readystatesoftware.systembartint.SystemBarTintManager;
+
+import butterknife.ButterKnife;
 
 /**
  * Fragment基类
@@ -34,16 +47,20 @@ public abstract class LazyFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        ButterKnife.bind(this.getActivity());
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ButterKnife.bind(this.getActivity());
+        StatusBarUtil.statusBarLightMode(this.getActivity());
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        ButterKnife.bind(this.getActivity());
         this.inflater = inflater;
         isFirstLoad = true;
         isPrepared = true;
@@ -97,6 +114,73 @@ public abstract class LazyFragment extends Fragment {
         return (LazyAppCompatActivity)getActivity();
     }
 
+
+    /** 子类可以重写改变状态栏颜色 */
+    protected int setStatusBarColor() {
+        return getColorPrimary();
+    }
+
+
+    /** 获取主题色 */
+    public int getColorPrimary() {
+        TypedValue typedValue = new TypedValue();
+        this.getActivity().getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
+        return typedValue.data;
+    }
+
+    /** 设置状态栏颜色 */
+    public void initSystemBarTint(boolean isTranslucent, int colorId) {
+        Window window = this.getActivity().getWindow();
+        ViewGroup mContentView = (ViewGroup) getActivity().findViewById(Window.ID_ANDROID_CONTENT);
+        SystemBarTintManager tintManager = new SystemBarTintManager(this.getActivity());
+        SystemBarTintManager.SystemBarConfig config = tintManager.getConfig();
+
+        //首先使 ChildView 不预留空间
+        View mChildView = mContentView.getChildAt(0);
+        if (mChildView != null) {
+            ViewCompat.setFitsSystemWindows(mChildView, false);
+        }
+
+        int statusBarHeight = config.getStatusBarHeight();
+        if (mChildView != null && mChildView.getLayoutParams() != null && mChildView.getLayoutParams().height == statusBarHeight) {
+            //移除假的 View.
+            mContentView.removeView(mChildView);
+            mChildView = mContentView.getChildAt(0);
+        }
+        if (mChildView != null) {
+            FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) mChildView.getLayoutParams();
+            //清除 ChildView 的 marginTop 属性
+            if (lp != null) {
+                lp.topMargin = statusBarHeight;
+                mChildView.setLayoutParams(lp);
+            }
+        }
+        if (isTranslucent) {
+            // 设置状态栏全透明
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                window.setStatusBarColor(Color.TRANSPARENT);
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                this.getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            }
+            StatusBarUtil.statusBarLightMode(this.getActivity());
+            return;
+        }
+        // 沉浸式状态栏
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            //5.0以上使用原生方法
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(colorId);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            //4.4-5.0使用三方工具类，有些4.4的手机有问题，这里为演示方便，不使用沉浸式
+            this.getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            tintManager.setStatusBarTintEnabled(true);
+            tintManager.setStatusBarTintColor(colorId);
+        }
+    }
 
     /**
      * 根据id查找view
