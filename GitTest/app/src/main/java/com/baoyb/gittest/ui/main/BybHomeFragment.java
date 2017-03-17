@@ -23,9 +23,9 @@ public class BybHomeFragment extends BaseListFragment {
     @Override
     protected void onCreateListView(Bundle savedInstanceState) {
         newsAdapter = new BybHomeNewsAdapter(new ArrayList<BybHomeNewModel>());
-        newsAdapter.setOnRecyclerViewItemChildClickListener(new BaseQuickAdapter.OnRecyclerViewItemChildClickListener() {
+        newsAdapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
             @Override
-            public void onItemChildClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
+            public void onItemClick(View view, int i) {
 
             }
         });

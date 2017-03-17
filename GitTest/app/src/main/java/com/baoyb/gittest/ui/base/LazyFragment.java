@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import butterknife.ButterKnife;
+
 /**
  * Fragment基类
  * Created by baoyb on 2017/3/9.
@@ -34,16 +36,19 @@ public abstract class LazyFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        ButterKnife.bind(this.getActivity());
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ButterKnife.bind(this.getActivity());
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        ButterKnife.bind(this.getActivity());
         this.inflater = inflater;
         isFirstLoad = true;
         isPrepared = true;

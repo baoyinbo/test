@@ -4,4 +4,19 @@
     <string name="tab_vidio">视频</string>
     <string name="tab_attention">关注</string>
     <string name="tab_mine">我的</string>
+
+    <!--我的-->
+    <string name="mine_to_login_tips">登录推荐更精准</string>
+    <string name="mine_collection">收藏</string>
+    <string name="mine_history">历史</string>
+    <string name="mine_style_day">日间</string>
+    <string name="mine_style_night">夜间</string>
+    <string name="mine_message_setting">消息通知</string>
+    <string name="mine_shop">头条商城</string>
+    <string name="mine_shop_tips">邀请好友得200元现金奖励</string>
+    <string name="mine_jd">京东特供</string>
+    <string name="mine_jd_tips">新人领188元红包</string>
+    <string name="mine_i_report">我要爆料</string>
+    <string name="mine_feedback">用户反馈</string>
+    <string name="mine_system_setting">系统设置</string>
 </resources>
