@@ -9,5 +9,5 @@ public class BybDefines {
     /**
      * 每页显示的条目数
      */
-     public static final int pageSize = 20;
+     public static final int pageSize = 10;
 }

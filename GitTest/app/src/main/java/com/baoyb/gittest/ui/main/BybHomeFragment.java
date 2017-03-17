@@ -33,12 +33,11 @@ public class BybHomeFragment extends BaseListFragment {
         });
         newsAdapter.openLoadMore(BybDefines.pageSize, true);
         setAdapter(newsAdapter);
-        homeNewModelList = new ArrayList<BybHomeNewModel>();
         test(pageNum);
     }
 
     private void test(int pageNum) {
-        homeNewModelList.clear();
+        homeNewModelList = new ArrayList<>();
         for (int i = pageNum * 10; i < pageNum * 10 + 10; i ++) {
             BybHomeNewModel model = new BybHomeNewModel();
             model.setTitle("今日头条新闻 -- " + i);
@@ -48,7 +47,7 @@ public class BybHomeFragment extends BaseListFragment {
         }
         if (pageNum > 1) {
             newsAdapter.addData(homeNewModelList);
-
+            newsAdapter.notifyDataChangedAfterLoadMore(true);
         } else {
             newsAdapter.setNewData(homeNewModelList);
         }
