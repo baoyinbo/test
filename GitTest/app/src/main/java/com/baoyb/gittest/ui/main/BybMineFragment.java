@@ -11,9 +11,6 @@ import android.widget.Toast;
 import com.baoyb.gittest.R;
 import com.baoyb.gittest.ui.base.BaseFragment;
 import com.baoyb.gittest.util.ToastShowUtils;
-
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 /**
  * Created by baoyb on 2017/3/10.
  */
@@ -28,7 +25,6 @@ public class BybMineFragment extends BaseFragment implements View.OnClickListene
 
     @Override
     public void initView(Bundle savedInstanceState) {
-        ButterKnife.bind(this.getActivity());
         findViewById(R.id.ivLoginByPhone).setOnClickListener(this);
         findViewById(R.id.ivLoginByQQ).setOnClickListener(this);
         findViewById(R.id.ivLoginByWX).setOnClickListener(this);
@@ -43,11 +39,6 @@ public class BybMineFragment extends BaseFragment implements View.OnClickListene
         findViewById(R.id.rlSystemSetting).setOnClickListener(this);
 
         tvStyle = (TextView) findViewById(R.id.tvStyle);
-    }
-
-    @OnClick(R.id.llCollection)
-    public void llCollection(View view) {
-        Toast.makeText(getActivity(), "llcollection", Toast.LENGTH_SHORT).show();
     }
 
     @Override

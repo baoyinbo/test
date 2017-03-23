@@ -1,6 +1,4 @@
 package com.baoyb.gittest.ui.main;
-
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -43,6 +41,22 @@ public class BybHomeFragment extends BaseFragment {
         tabChannel.setupWithViewPager(viewPager);
         tabChannel.setTabTextColors(ResourceUtils.getColor(this.getContext(), R.color.text_black),
                 ResourceUtils.getColor(this.getContext(), R.color.text_red));
+        tabChannel.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 
     private void test() {

@@ -1,26 +1,46 @@
 package com.baoyb.gittest.ui.home;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.TextView;
+
 import com.baoyb.gittest.ui.base.BaseListFragment;
 
 /**
  * Created by baoyinbo on 2017/3/17.
  */
 
-public class BybTabFragment extends BaseListFragment{
+public class BybTabFragment extends Fragment{
+    private static String CHANNEL;
 
     @Override
-    protected void onCreateListView(Bundle savedInstanceState) {
-
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getData();
     }
 
+    @Nullable
     @Override
-    protected void onPullDownRefreshListener() {
-
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        TextView tv = new TextView(getActivity());
+        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(-1, -1);
+        tv.setLayoutParams(params);
+        tv.setGravity(Gravity.CENTER);
+        tv.setText(CHANNEL);
+        return tv;
     }
 
-    @Override
-    protected void onLoadMoreListener() {
 
+    private void getData() {
+        if (getArguments() != null) {
+            CHANNEL = getArguments().getString("channel");
+        }
     }
+
 }
