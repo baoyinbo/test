@@ -2,6 +2,8 @@ package com.baoyb.gittest;
 
 import android.app.Application;
 
+import com.baoyb.gittest.ui.base.BybActivityStackManager;
+
 /**
  * 程序入口，进行必要的初始化
  * Created by baoyb on 2017/3/17.
@@ -9,7 +11,10 @@ import android.app.Application;
 
 public class BybApplication extends Application{
     private static BybApplication application;
-
+    /**
+     * activity部分栈管理
+     */
+    private BybActivityStackManager ssManager;
     public static BybApplication getApplication() {
         return application;
     }
@@ -17,5 +22,12 @@ public class BybApplication extends Application{
     @Override
     public void onCreate() {
         application = this;
+    }
+
+    public synchronized BybActivityStackManager getActivityStackManager() {
+        if (ssManager == null) {
+            ssManager = new BybActivityStackManager();
+        }
+        return ssManager;
     }
 }

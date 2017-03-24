@@ -19,7 +19,6 @@ import java.util.List;
 public class BybHomeFragment extends BaseFragment {
     private String[] channels = new String[]{
             "推荐", "热点", "杭州", "社会","订阅", "娱乐", "科技", "汽车","体育", "财经", "美女"};
-    private List<Fragment> fragments;
     private ViewPager viewPager;
     private BybTabFragmentAdapter tabFragmentAdapter;
     private TabLayout tabChannel;
@@ -31,12 +30,9 @@ public class BybHomeFragment extends BaseFragment {
     @Override
     public void initView(Bundle savedInstanceState) {
         initSystemBarTint(false, R.color.background_red);
-        fragments = new ArrayList<>();
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         tabChannel = (TabLayout) findViewById(R.id.tabChannel);
-        test();
-        tabFragmentAdapter = new BybTabFragmentAdapter(this.getContext(), channels, fragments,
-                getActivity().getSupportFragmentManager());
+        tabFragmentAdapter = new BybTabFragmentAdapter(channels, getActivity().getSupportFragmentManager());
         viewPager.setAdapter(tabFragmentAdapter);
         tabChannel.setupWithViewPager(viewPager);
         tabChannel.setTabTextColors(ResourceUtils.getColor(this.getContext(), R.color.text_black),
@@ -44,7 +40,7 @@ public class BybHomeFragment extends BaseFragment {
         tabChannel.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-
+                viewPager.setCurrentItem(tab.getPosition());
             }
 
             @Override
@@ -59,13 +55,4 @@ public class BybHomeFragment extends BaseFragment {
         });
     }
 
-    private void test() {
-        for (int i = 0; i < channels.length; i ++) {
-            Fragment fragment = new BybTabFragment();
-            Bundle bundle = new Bundle();
-            bundle.putString("channel",channels[i]);
-            fragment.setArguments(bundle);
-            fragments.add(fragment);
-        }
-    }
 }

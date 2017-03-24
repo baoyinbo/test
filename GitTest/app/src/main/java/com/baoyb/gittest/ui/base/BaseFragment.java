@@ -7,5 +7,12 @@ package com.baoyb.gittest.ui.base;
 
 public abstract class BaseFragment extends LazyFragment {
 
-
+    /**
+     * finish掉当前activity
+     */
+    public void finishActivity() {
+        if (getActivity() != null && !getActivity().isFinishing()) {
+            getActivity().finish();
+        }
+    }
 }

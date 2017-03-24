@@ -4,11 +4,14 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 
 import com.baoyb.gittest.R;
 import com.baoyb.gittest.util.StatusBarUtil;
@@ -92,22 +95,42 @@ public abstract class BaseActivity extends AppCompatActivity {
         return getColorPrimary();
     }
 
-    /** 子类可以重写决定是否使用透明状态栏 */
-    protected boolean translucentStatusBar() {
-        return false;
-    }
 
     /** 获取主题色 */
     public int getColorPrimary() {
         TypedValue typedValue = new TypedValue();
-        getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
+        this.getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
         return typedValue.data;
     }
 
     /** 设置状态栏颜色 */
-    public void initSystemBarTint() {
-        Window window = getWindow();
-        if (translucentStatusBar()) {
+    public void initSystemBarTint(boolean isTranslucent, int colorId) {
+        Window window = this.getWindow();
+        ViewGroup mContentView = (ViewGroup) findViewById(Window.ID_ANDROID_CONTENT);
+        SystemBarTintManager tintManager = new SystemBarTintManager(this);
+        SystemBarTintManager.SystemBarConfig config = tintManager.getConfig();
+
+        //首先使 ChildView 不预留空间
+        View mChildView = mContentView.getChildAt(0);
+        if (mChildView != null) {
+            ViewCompat.setFitsSystemWindows(mChildView, false);
+        }
+
+        int statusBarHeight = config.getStatusBarHeight();
+        if (mChildView != null && mChildView.getLayoutParams() != null && mChildView.getLayoutParams().height == statusBarHeight) {
+            //移除假的 View.
+            mContentView.removeView(mChildView);
+            mChildView = mContentView.getChildAt(0);
+        }
+        if (mChildView != null) {
+            FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) mChildView.getLayoutParams();
+            //清除 ChildView 的 marginTop 属性
+            if (lp != null) {
+                lp.topMargin = statusBarHeight;
+                mChildView.setLayoutParams(lp);
+            }
+        }
+        if (isTranslucent) {
             // 设置状态栏全透明
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -115,8 +138,9 @@ public abstract class BaseActivity extends AppCompatActivity {
                 window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
                 window.setStatusBarColor(Color.TRANSPARENT);
             } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             }
+            StatusBarUtil.statusBarLightMode(this);
             return;
         }
         // 沉浸式状态栏
@@ -124,13 +148,12 @@ public abstract class BaseActivity extends AppCompatActivity {
             //5.0以上使用原生方法
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(setStatusBarColor());
+            window.setStatusBarColor(colorId);
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             //4.4-5.0使用三方工具类，有些4.4的手机有问题，这里为演示方便，不使用沉浸式
-//            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            SystemBarTintManager tintManager = new SystemBarTintManager(this);
+            this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             tintManager.setStatusBarTintEnabled(true);
-            tintManager.setStatusBarTintColor(setStatusBarColor());
+            tintManager.setStatusBarTintColor(colorId);
         }
     }
 

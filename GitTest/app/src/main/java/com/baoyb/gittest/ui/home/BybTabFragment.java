@@ -1,41 +1,38 @@
 package com.baoyb.gittest.ui.home;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.TextView;
 
-import com.baoyb.gittest.ui.base.BaseListFragment;
+import com.baoyb.gittest.R;
+import com.baoyb.gittest.ui.base.BaseFragment;
 
 /**
  * Created by baoyinbo on 2017/3/17.
  */
 
-public class BybTabFragment extends Fragment{
+public class BybTabFragment extends BaseFragment{
+    private TextView tv;
     private static String CHANNEL;
 
+    public static BybTabFragment newInstance(String title) {
+        Bundle bundle = new Bundle();
+        bundle.putString("channel", title);
+        BybTabFragment fragment = new BybTabFragment();
+        fragment.setArguments(bundle);
+        return fragment;
+    }
+
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public int getLayoutId() {
+        return R.layout.byb_fra_home_table;
+    }
+
+    @Override
+    public void initView(Bundle savedInstanceState) {
         getData();
-    }
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        TextView tv = new TextView(getActivity());
-        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(-1, -1);
-        tv.setLayoutParams(params);
-        tv.setGravity(Gravity.CENTER);
+        tv = (TextView) findViewById(R.id.tv);
         tv.setText(CHANNEL);
-        return tv;
     }
-
 
     private void getData() {
         if (getArguments() != null) {

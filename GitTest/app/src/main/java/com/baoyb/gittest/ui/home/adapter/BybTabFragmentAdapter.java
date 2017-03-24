@@ -1,11 +1,11 @@
 package com.baoyb.gittest.ui.home.adapter;
 
-import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import java.util.List;
+import com.baoyb.gittest.ui.home.BybTabFragment;
+
 
 /**
  * Created by baoyinbo on 2017/3/17.
@@ -13,19 +13,14 @@ import java.util.List;
 
 public class BybTabFragmentAdapter extends FragmentPagerAdapter {
     private String[] channels;
-    private Context context;
-    private List<Fragment> fragments;
-    public BybTabFragmentAdapter(Context context, String[] channels,
-           List<Fragment> fragments, FragmentManager fm) {
+    public BybTabFragmentAdapter(String[] channels, FragmentManager fm) {
         super(fm);
-        this.context = context;
         this.channels = channels;
-        this.fragments = fragments;
     }
 
     @Override
     public Fragment getItem(int position) {
-        return fragments.get(position);
+        return BybTabFragment.newInstance(channels[position]);
     }
 
     @Override

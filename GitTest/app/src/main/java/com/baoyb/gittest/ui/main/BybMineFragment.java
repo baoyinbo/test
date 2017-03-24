@@ -10,6 +10,9 @@ import android.widget.Toast;
 
 import com.baoyb.gittest.R;
 import com.baoyb.gittest.ui.base.BaseFragment;
+import com.baoyb.gittest.ui.base.CommomActivity;
+import com.baoyb.gittest.ui.base.LaunchBody;
+import com.baoyb.gittest.ui.mine.BybSystemSettingFragment;
 import com.baoyb.gittest.util.ToastShowUtils;
 /**
  * Created by baoyb on 2017/3/10.
@@ -70,6 +73,10 @@ public class BybMineFragment extends BaseFragment implements View.OnClickListene
                 isDayStyle = !isDayStyle;
                 this.getActivity().recreate();
                 break;
+            case R.id.rlSystemSetting:
+                LaunchBody.Builder builder = new LaunchBody.Builder(BybMineFragment.this, BybSystemSettingFragment.class);
+                builder.launchType(LaunchBody.LaunchType.SINGLE_TOP);
+                CommomActivity.launch(builder);
 
         }
     }
