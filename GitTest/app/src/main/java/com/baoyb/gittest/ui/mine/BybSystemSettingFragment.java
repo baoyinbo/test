@@ -17,6 +17,6 @@ public class BybSystemSettingFragment extends BaseActivityFragment {
 
     @Override
     public void initView(Bundle savedInstanceState) {
-
+        setTitle("系统设置");
     }
 }
