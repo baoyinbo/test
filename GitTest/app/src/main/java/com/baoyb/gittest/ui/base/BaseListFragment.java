@@ -5,9 +5,15 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.baoyb.gittest.R;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+
+import in.srain.cube.views.ptr.PtrClassicDefaultHeader;
+import in.srain.cube.views.ptr.PtrDefaultHandler;
+import in.srain.cube.views.ptr.PtrFrameLayout;
+import in.srain.cube.views.ptr.PtrHandler;
 
 /**
  * 列表功能的fragment
@@ -17,6 +23,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 public abstract class BaseListFragment extends BaseFragment{
     private RecyclerView recyclerView;
     private BaseQuickAdapter adapter;
+    private PtrFrameLayout ptrFrameLayout;
     @Override
     public int getLayoutId() {
         return R.layout.byb_fra_base_list;
@@ -25,6 +32,8 @@ public abstract class BaseListFragment extends BaseFragment{
     @Override
     public void initView(Bundle savedInstanceState) {
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        ptrFrameLayout = (PtrFrameLayout) findViewById(R.id.refreshView);
+        initPtrFrameLayout();
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         //设置为垂直布局，这也是默认的
         layoutManager.setOrientation(OrientationHelper.VERTICAL);
@@ -38,6 +47,24 @@ public abstract class BaseListFragment extends BaseFragment{
         onCreateListView(savedInstanceState);
     }
 
+
+    private void initPtrFrameLayout() {
+        ptrFrameLayout.setPtrHandler(new PtrHandler() {
+            @Override
+            public void onRefreshBegin(PtrFrameLayout frame) {
+                onPullDownRefreshListener();
+            }
+
+            @Override
+            public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
+                return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
+            }
+        });
+        PtrClassicDefaultHeader header = new PtrClassicDefaultHeader(BaseListFragment.this.getContext());
+        ptrFrameLayout.setHeaderView(header);
+        ptrFrameLayout.addPtrUIHandler(header);
+    }
+
     /**
      * 获取recyclerView
      * @return
@@ -46,6 +73,14 @@ public abstract class BaseListFragment extends BaseFragment{
         return recyclerView;
     }
 
+    /**
+     * 获取下拉刷新控件
+     *
+     * @return
+     */
+    public PtrFrameLayout getSwipeRefreshLayout() {
+        return ptrFrameLayout;
+    }
     /**
      * 设置适配器列表
      * @param adapter
@@ -67,6 +102,13 @@ public abstract class BaseListFragment extends BaseFragment{
      * @param savedInstanceState
      */
     protected abstract void onCreateListView(Bundle savedInstanceState);
+
+    /**
+     * 结束下拉刷新
+     */
+    protected void completePullDownRefresh() {
+        ptrFrameLayout.refreshComplete();
+    }
 
     /***
      * 下拉刷新回调方法

@@ -1,6 +1,7 @@
 package com.baoyb.gittest.ui.main;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 import android.view.View;
@@ -14,11 +15,19 @@ import com.baoyb.gittest.ui.base.CommomActivity;
 import com.baoyb.gittest.ui.base.LaunchBody;
 import com.baoyb.gittest.ui.mine.BybSystemSettingFragment;
 import com.baoyb.gittest.util.ToastShowUtils;
+import com.baoyb.gittest.view.WJPtrFrameLayout;
+
+import in.srain.cube.views.ptr.PtrClassicDefaultHeader;
+import in.srain.cube.views.ptr.PtrDefaultHandler;
+import in.srain.cube.views.ptr.PtrFrameLayout;
+import in.srain.cube.views.ptr.PtrHandler;
+
 /**
  * Created by baoyb on 2017/3/10.
  */
 
 public class BybMineFragment extends BaseFragment implements View.OnClickListener {
+    private WJPtrFrameLayout ptrFrameLayout;
     private boolean isDayStyle = true;  //日间模式
     private TextView tvStyle;
     @Override
@@ -28,6 +37,9 @@ public class BybMineFragment extends BaseFragment implements View.OnClickListene
 
     @Override
     public void initView(Bundle savedInstanceState) {
+        ptrFrameLayout = (WJPtrFrameLayout) findViewById(R.id.refreshView);
+        initPtrFrameLayout();
+        ptrFrameLayout.setPullToRefresh(true);
         findViewById(R.id.ivLoginByPhone).setOnClickListener(this);
         findViewById(R.id.ivLoginByQQ).setOnClickListener(this);
         findViewById(R.id.ivLoginByWX).setOnClickListener(this);
@@ -42,6 +54,28 @@ public class BybMineFragment extends BaseFragment implements View.OnClickListene
         findViewById(R.id.rlSystemSetting).setOnClickListener(this);
 
         tvStyle = (TextView) findViewById(R.id.tvStyle);
+    }
+
+    private void initPtrFrameLayout() {
+        ptrFrameLayout.setPtrHandler(new PtrHandler() {
+            @Override
+            public void onRefreshBegin(PtrFrameLayout frame) {
+                onPullDownRefreshListener();
+            }
+
+            @Override
+            public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
+                return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
+            }
+        });
+    }
+
+    private void onPullDownRefreshListener() {
+
+    }
+
+    private void completePullDownRefresh() {
+        ptrFrameLayout.refreshComplete();
     }
 
     @Override

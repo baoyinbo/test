@@ -39,8 +39,9 @@ public abstract class LazyFragment extends Fragment {
     protected String fragmentTitle;             //fragment标题
     private boolean isVisible;                  //是否可见状态
     private boolean isPrepared;                 //标志位，View已经初始化完成。
-    private boolean isFirstLoad = true;         //是否第一次加载
+    private boolean isFirstLoad;                //是否第一次加载
     protected LayoutInflater inflater;
+    private View rootView;
 
     @Override
     public void onAttach(Context context) {
@@ -51,37 +52,45 @@ public abstract class LazyFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         StatusBarUtil.statusBarLightMode(this.getActivity());
+        isFirstLoad = true;
+        isPrepared = true;
+        isVisible = true;
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         this.inflater = inflater;
-        isFirstLoad = true;
-        isPrepared = true;
-        return inflater.inflate(getLayoutId(), container, false);
+        if(rootView==null){
+            rootView=inflater.inflate(getLayoutId(), container, false);
+        }
+        //缓存的rootView需要判断是否已经被加过parent， 如果有parent需要从parent删除，要不然会发生这个rootview已经有parent的错误。
+        ViewGroup parent = (ViewGroup) rootView.getParent();
+        if (parent != null) {
+            parent.removeView(rootView);
+        }
+        return rootView;
+//        return inflater.inflate(getLayoutId(), container, false);
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         lazyLoad(savedInstanceState);
-        isPrepared = true;
     }
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         // 此方法只是在FragmentPagerAdapter或者FragmentStatePagerAdapter中显示或者不显示才会调用的方法
-        if (isPrepared) {
-            if (getUserVisibleHint()) {
-                isVisible = true;
-                onVisible();
-            } else {
-                isVisible = false;
-                onInvisible();
-            }
+        if (getUserVisibleHint()) {
+            isVisible = true;
+            onVisible();
+        } else {
+            isVisible = false;
+            onInvisible();
         }
+
     }
 
 
@@ -89,14 +98,12 @@ public abstract class LazyFragment extends Fragment {
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         // 此方法在是在调用FragmentTransaction.hide或者FragmentTransaction.show的时候才会调用的方法
-        if (isPrepared) {
-            if (hidden) {
-                isVisible = false;
-                onInvisible();
-            } else {
-                isVisible = true;
-                onVisible();
-            }
+        if (hidden) {
+            isVisible = false;
+            onInvisible();
+        } else {
+            isVisible = true;
+            onVisible();
         }
     }
 
@@ -218,9 +225,9 @@ public abstract class LazyFragment extends Fragment {
     public abstract int getLayoutId();
 
     protected void lazyLoad(Bundle savedInstanceState) {
-//        if (!isPrepared || !isVisible || !isFirstLoad) {
-//            return;
-//        }
+        if (!isPrepared || !isVisible || !isFirstLoad) {
+            return;
+        }
         isFirstLoad = false;
         initView(savedInstanceState);
     }
