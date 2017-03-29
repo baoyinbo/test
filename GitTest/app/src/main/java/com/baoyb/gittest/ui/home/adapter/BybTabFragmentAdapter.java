@@ -20,7 +20,7 @@ public class BybTabFragmentAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return BybTabFragment.newInstance(channels[position]);
+        return BybTabFragment.newInstance(position + "");
     }
 
     @Override

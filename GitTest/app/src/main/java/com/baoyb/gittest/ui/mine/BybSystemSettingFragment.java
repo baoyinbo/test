@@ -1,7 +1,6 @@
 package com.baoyb.gittest.ui.mine;
 
 import android.os.Bundle;
-
 import com.baoyb.gittest.R;
 import com.baoyb.gittest.ui.base.BaseActivityFragment;
 

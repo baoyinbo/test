@@ -1,4 +1,7 @@
 package com.baoyb.gittest.net;
+import com.baoyb.gittest.R;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.Callback;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,8 +12,10 @@ import java.util.Map;
  */
 
 public class BybApiManager {
+    private static final String URL_BASE_NEWS_POST = "toutiao/get_list";    //POST方法
     private static BybApiManager apiManager = new BybApiManager();
 
+    private BybRequestManager requestManager;
     /**
      * 请求头，所有请求共同需要的参数
      */
@@ -20,6 +25,7 @@ public class BybApiManager {
     }
 
     private BybApiManager() {
+        requestManager = new BybRequestManager();
         headers = new HashMap<>();
         headers.putAll(initHeader());
     }
@@ -35,7 +41,13 @@ public class BybApiManager {
         return map;
     }
 
-    public void test() {
-
+    /**
+     *
+     */
+    public void getNewsRecommend(String cate_id, String page, Callback callback) {
+        Map params = new HashMap();
+        params.put("cate_id", cate_id);
+        params.put("page", page);
+        requestManager.get(R.string.url_home, params, callback);
     }
 }

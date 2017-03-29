@@ -26,29 +26,9 @@ public class BybVidioFragment extends BaseListFragment {
 
     @Override
     protected void onCreateListView(Bundle savedInstanceState) {
-        initSystemBarTint(false, R.color.background_red);
-        newsAdapter = new BybHomeNewsAdapter(new ArrayList<BybHomeNewModel>());
-        newsAdapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
-            @Override
-            public void onItemClick(View view, int i) {
 
-            }
-        });
-        setAdapter(newsAdapter);
-        homeNewModelList = new ArrayList<BybHomeNewModel>();
-        test();
     }
 
-    private void test() {
-        for (int i = 0; i < 30; i ++) {
-            BybHomeNewModel model = new BybHomeNewModel();
-            model.setTitle("今日头条新闻 -- " + i);
-            model.setSrc("网易新闻 -- " + i);
-            model.setPdate(i + "分钟前");
-            homeNewModelList.add(model);
-        }
-        newsAdapter.setNewData(homeNewModelList);
-    }
 
     @Override
     protected void onPullDownRefreshListener() {
