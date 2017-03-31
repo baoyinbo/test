@@ -5,14 +5,22 @@ import android.view.View;
 
 import com.baoyb.gittest.R;
 import com.baoyb.gittest.model.BybHomeNewModel;
+import com.baoyb.gittest.model.BybVidioModel;
+import com.baoyb.gittest.model.BybVidiosModel;
+import com.baoyb.gittest.net.BybApiManager;
+import com.baoyb.gittest.net.BybRequestCallback;
 import com.baoyb.gittest.ui.base.BaseFragment;
 import com.baoyb.gittest.ui.base.BaseListFragment;
 import com.baoyb.gittest.ui.news.adapter.BybHomeNewsAdapter;
+import com.baoyb.gittest.ui.vidio.adapter.BybVidiosAdapter;
 import com.baoyb.gittest.util.StatusBarUtil;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
+import okhttp3.Call;
 
 
 /**
@@ -21,22 +29,63 @@ import java.util.List;
 
 public class BybVidioFragment extends BaseListFragment {
 
-    private BybHomeNewsAdapter newsAdapter;
-    private List<BybHomeNewModel> homeNewModelList;
+    private BybVidiosAdapter vidiosAdapter;
+    private List<BybVidiosModel> vidiosModelList;
+    private int page = 1;
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.byb_fra_vidio;
+    }
 
     @Override
     protected void onCreateListView(Bundle savedInstanceState) {
 
+        vidiosAdapter = new BybVidiosAdapter(BybVidioFragment.this.getContext(), new ArrayList<BybVidiosModel>());
+        vidiosAdapter.openLoadMore(8, true);
+        setAdapter(vidiosAdapter);
+        addOnLoadView();
+        refreshView();
     }
 
+    private void refreshView() {
+        BybApiManager.getInstance().getVidioList(page + "",
+                new BybRequestCallback(BybVidioModel.class) {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        completePullDownRefresh();
+                    }
 
+                    @Override
+                    public void onResponse(Object response, int id) {
+                        completePullDownRefresh();
+                        BybVidioModel model = (BybVidioModel)response;
+                        vidiosModelList = model.getResults();
+                        if (vidiosModelList != null) {
+                            if (page == 1) {
+                                vidiosAdapter.setNewData(vidiosModelList);
+                                vidiosAdapter.openLoadMore(8, true);
+                            } else {
+                                vidiosAdapter.notifyDataChangedAfterLoadMore(vidiosModelList, true);
+                            }
+                        }
+                    }
+                });
+    }
+
+    private void addOnLoadView() {
+        View loadView =View.inflate(getContext(), R.layout.byb_comm_list_load_more, null);
+        vidiosAdapter.setLoadingView(loadView);
+    }
     @Override
     protected void onPullDownRefreshListener() {
-
+        page = 1;
+        refreshView();
     }
 
     @Override
     protected void onLoadMoreListener() {
-
+        page++;
+        refreshView();
     }
 }

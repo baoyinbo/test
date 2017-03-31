@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llItem"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical"
+    android:gravity="center_horizontal"
+    android:background="@drawable/byb_ripple_white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:id="@+id/tvScore"
+            style="@style/text_18_black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:text="110-98"/>
+
+        <ImageView
+            android:id="@+id/ivHomeLogo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_toLeftOf="@id/tvScore"
+            android:src="@mipmap/ic_qq"/>
+        <ImageView
+            android:id="@+id/ivCustomeLogo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_toRightOf="@id/tvScore"
+            android:src="@mipmap/ic_qq"/>
+
+        <TextView
+            android:id="@+id/tvHomeTeam"
+            style="@style/text_14_black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/ivHomeLogo"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:text="主队"/>
+
+        <TextView
+            android:id="@+id/tvCustomerTeam"
+            style="@style/text_14_black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/ivCustomeLogo"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:text="客队"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="已结束"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/background">
+    </View>
+</LinearLayout>

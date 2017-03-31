@@ -7,6 +7,7 @@ import com.baoyb.gittest.R;
 import com.baoyb.gittest.model.BybHomeNewModel;
 import com.baoyb.gittest.model.BybHomeNewsModel;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
@@ -45,7 +46,8 @@ public class BybHomeNewsAdapter extends BaseQuickAdapter<BybHomeNewsModel> {
             helper.setVisible(R.id.llThreeImg, false);
             helper.setVisible(R.id.ivBigImg, true);
             ImageView ivBigImg = helper.getView(R.id.ivBigImg);
-            Glide.with(context).load(item.getImg().get(0).getUrl()).asBitmap().into(ivBigImg);
+            Glide.with(context).load(item.getImg().get(0).getUrl()).asBitmap()
+                    .diskCacheStrategy(DiskCacheStrategy.RESULT).into(ivBigImg);
         } else if (templateType.equals("4")) {
             helper.setVisible(R.id.ivOneSmallImg, false);
             helper.setVisible(R.id.llImg, true);
@@ -54,14 +56,18 @@ public class BybHomeNewsAdapter extends BaseQuickAdapter<BybHomeNewsModel> {
             ImageView ivSmallImg1 = helper.getView(R.id.ivThreeSmallImg1);
             ImageView ivSmallImg2 = helper.getView(R.id.ivThreeSmallImg3);
             ImageView ivSmallImg3 = helper.getView(R.id.ivThreeSmallImg2);
-            Glide.with(context).load(item.getImg().get(0).getUrl()).asBitmap().into(ivSmallImg1);
-            Glide.with(context).load(item.getImg().get(1).getUrl()).asBitmap().into(ivSmallImg2);
-            Glide.with(context).load(item.getImg().get(2).getUrl()).asBitmap().into(ivSmallImg3);
+            Glide.with(context).load(item.getImg().get(0).getUrl()).asBitmap()
+                    .diskCacheStrategy(DiskCacheStrategy.RESULT).into(ivSmallImg1);
+            Glide.with(context).load(item.getImg().get(1).getUrl()).asBitmap()
+                    .diskCacheStrategy(DiskCacheStrategy.RESULT).into(ivSmallImg2);
+            Glide.with(context).load(item.getImg().get(2).getUrl()).asBitmap()
+                    .diskCacheStrategy(DiskCacheStrategy.RESULT).into(ivSmallImg3);
         } else if (templateType.equals("5")) {
             helper.setVisible(R.id.ivOneSmallImg, true);
             helper.setVisible(R.id.llImg, false);
             ImageView ivSmallImg = helper.getView(R.id.ivOneSmallImg);
-            Glide.with(context).load(item.getImg().get(0).getUrl()).asBitmap().into(ivSmallImg);
+            Glide.with(context).load(item.getImg().get(0).getUrl()).asBitmap()
+                    .diskCacheStrategy(DiskCacheStrategy.RESULT).into(ivSmallImg);
         }
     }
 

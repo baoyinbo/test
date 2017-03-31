@@ -1,6 +1,6 @@
 package com.baoyb.gittest.net;
 
-import com.apkfuns.logutils.LogUtils;
+import com.baoyb.gittest.util.LogUtils;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.callback.Callback;
 import okhttp3.Response;
@@ -19,7 +19,11 @@ public abstract class BybRequestCallback<T> extends Callback<T> {
     public T parseNetworkResponse(Response response, int id) throws Exception {
         String string = response.body().string();
         T data = (T) new Gson().fromJson(string, object);
-        LogUtils.json(string);
+        try {
+            LogUtils.json("byb", string);
+        } catch (Exception e) {
+
+        }
         return data;
     }
 }

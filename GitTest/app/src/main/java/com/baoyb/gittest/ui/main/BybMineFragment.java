@@ -14,6 +14,7 @@ import com.baoyb.gittest.ui.base.BaseFragment;
 import com.baoyb.gittest.ui.base.CommomActivity;
 import com.baoyb.gittest.ui.base.LaunchBody;
 import com.baoyb.gittest.ui.mine.BybSystemSettingFragment;
+import com.baoyb.gittest.ui.nba.BybNbaListFragment;
 import com.baoyb.gittest.util.ToastShowUtils;
 import com.baoyb.gittest.view.WJPtrFrameLayout;
 
@@ -91,6 +92,10 @@ public class BybMineFragment extends BaseFragment implements View.OnClickListene
                 ToastShowUtils.showSuccessToast("微信登录");
                 break;
             case R.id.llCollection:
+                LaunchBody.Builder builder = new LaunchBody.Builder(BybMineFragment.this,
+                        BybNbaListFragment.class);
+                builder.launchType(LaunchBody.LaunchType.SINGLE_TOP);
+                CommomActivity.launch(builder);
                 break;
             case R.id.llHistory:
                 break;
@@ -108,9 +113,9 @@ public class BybMineFragment extends BaseFragment implements View.OnClickListene
                 this.getActivity().recreate();
                 break;
             case R.id.rlSystemSetting:
-                LaunchBody.Builder builder = new LaunchBody.Builder(BybMineFragment.this, BybSystemSettingFragment.class);
-                builder.launchType(LaunchBody.LaunchType.SINGLE_TOP);
-                CommomActivity.launch(builder);
+//                LaunchBody.Builder builder = new LaunchBody.Builder(BybMineFragment.this, BybSystemSettingFragment.class);
+//                builder.launchType(LaunchBody.LaunchType.SINGLE_TOP);
+//                CommomActivity.launch(builder);
 
         }
     }

@@ -2,7 +2,6 @@ package com.baoyb.gittest;
 
 import android.app.Application;
 
-import com.apkfuns.logutils.LogUtils;
 import com.baoyb.gittest.ui.base.BybActivityStackManager;
 import com.zhy.http.okhttp.OkHttpUtils;
 
@@ -52,9 +51,9 @@ public class BybApplication extends Application{
 
         //日志设置
         // 配置日志是否输出(默认true)
-        LogUtils.configAllowLog = true;
+//        LogUtils.configAllowLog = true;
         // 配置日志前缀
-        LogUtils.configTagPrefix = "byb-";
+//        LogUtils.configTagPrefix = "byb-";
     }
 
     public synchronized BybActivityStackManager getActivityStackManager() {

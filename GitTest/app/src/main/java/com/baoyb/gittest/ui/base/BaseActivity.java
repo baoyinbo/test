@@ -15,10 +15,14 @@ import android.widget.FrameLayout;
 
 import com.baoyb.gittest.R;
 import com.baoyb.gittest.util.StatusBarUtil;
+import com.baoyb.gittest.util.ToastShowUtils;
 import com.jude.swipbackhelper.SwipeBackHelper;
 import com.jude.swipbackhelper.SwipeBackPage;
 import com.jude.swipbackhelper.SwipeListener;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 /**
@@ -198,4 +202,23 @@ public abstract class BaseActivity extends AppCompatActivity {
      * @see [类、类#方法、类#成员]
      */
     public abstract void initView();
+
+    private int isFirstBack = 1;
+    @Override
+    public void onBackPressed() {
+        if (isFirstBack == 1) {
+            ToastShowUtils.showTextToast("再按一次退出");
+            isFirstBack = 3;
+            //开启一个异步线程，当用户超过两秒没有再次点击返回键，则取消退出状态
+            new Timer().schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    isFirstBack = 1; // 取消退出
+                }
+            }, 1000);
+        } else if (isFirstBack == 3) {//单用户连续点击两次的时候，退出程序
+            this.finish();
+            System.exit(0);
+        }
+    }
 }

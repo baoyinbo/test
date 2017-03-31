@@ -6,4 +6,9 @@ package com.baoyb.gittest.net;
 
 public class BybUrlDefines {
     public static final String URL_BASE_NEWS = "http://shouyoutoutiao.app.17wanba.com/";   //新闻来源
+    public static final String URL_BASE_IMAGE = "http://gank.io/api/";//图片来源
+    public static final String URL_BASE_NBA = "http://op.juhe.cn/onebox/basketball/nba";    //NBA赛程赛果
+
+
+    public static final String nbaKey = "9d97ec25ef49e3048f01e5b94348e021";
 }

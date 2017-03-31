@@ -1,4 +1,7 @@
 package com.baoyb.gittest.net;
+import android.support.annotation.StringRes;
+
+import com.baoyb.gittest.BybApplication;
 import com.baoyb.gittest.R;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.Callback;
@@ -42,12 +45,47 @@ public class BybApiManager {
     }
 
     /**
-     *
+     * 新闻api
+     * @param resId
+     * @return
+     */
+    private String createNewsUrl(@StringRes int resId) {
+        StringBuilder builder = new StringBuilder(BybUrlDefines.URL_BASE_NEWS);
+        builder.append(BybApplication.getApplication().getString(resId));
+        return builder.toString();
+    }
+
+    private String createVidiosUrl(@StringRes int resId) {
+        StringBuilder builder = new StringBuilder(BybUrlDefines.URL_BASE_IMAGE);
+        builder.append(BybApplication.getApplication().getString(resId));
+        return builder.toString();
+    }
+
+
+    /**
+     * 获取首页新闻
      */
     public void getNewsRecommend(String cate_id, String page, Callback callback) {
         Map params = new HashMap();
         params.put("cate_id", cate_id);
         params.put("page", page);
-        requestManager.get(R.string.url_home, params, callback);
+        requestManager.get(createNewsUrl(R.string.url_home), params, callback);
+    }
+
+    /**
+     * 获取图片
+     * @param page
+     * @param callback
+     */
+    public void getVidioList(String page, Callback callback) {
+//        Map params = new HashMap();
+//        params.put("page", page);
+        requestManager.get(createVidiosUrl(R.string.url_img) + page, null, callback);
+    }
+
+    public void getNba(Callback callback) {
+        Map params = new HashMap();
+        params.put("key", BybUrlDefines.nbaKey);
+        requestManager.get(BybUrlDefines.URL_BASE_NBA, params, callback);
     }
 }

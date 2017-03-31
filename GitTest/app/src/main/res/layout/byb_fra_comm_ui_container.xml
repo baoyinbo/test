@@ -9,7 +9,8 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:titleTextAppearance="@style/text_18_black"
+        android:background="@color/white"
+        style="@style/textTitle"
         tools:titleMarginStart="0dp">
 
     </android.support.v7.widget.Toolbar>

@@ -11,6 +11,8 @@
         <item name="windowNoTitle">true</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowAnimationStyle">@style/Window.Animation</item>
+
+        <item name="buttonStyle">@style/button</item>
     </style>
 
     <style name="AppTheme" parent="@style/BaseAppTheme"></style>
