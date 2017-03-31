@@ -83,9 +83,24 @@ public class BybApiManager {
         requestManager.get(createVidiosUrl(R.string.url_img) + page, null, callback);
     }
 
+    /**
+     * nba赛事直播表
+     * @param callback
+     */
     public void getNba(Callback callback) {
         Map params = new HashMap();
         params.put("key", BybUrlDefines.nbaKey);
         requestManager.get(BybUrlDefines.URL_BASE_NBA, params, callback);
+    }
+
+    /**
+     * 号码归属地查询
+     * @param mobile
+     * @param callback
+     */
+    public void getMobileSearch(String mobile, Callback callback) {
+        Map params = new HashMap();
+        params.put("tel", mobile);
+        requestManager.get(BybUrlDefines.URL_BASE_MOBILE_SEARCH, params, callback);
     }
 }

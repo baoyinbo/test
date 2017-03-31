@@ -18,6 +18,10 @@ public abstract class BybRequestCallback<T> extends Callback<T> {
     @Override
     public T parseNetworkResponse(Response response, int id) throws Exception {
         String string = response.body().string();
+
+        if (object.getName().contains("BybMobile")) {
+            string = string.substring(18);  //__GetZoneResult_ =
+        }
         T data = (T) new Gson().fromJson(string, object);
         try {
             LogUtils.json("byb", string);
