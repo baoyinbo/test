@@ -7,10 +7,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.baoyb.gittest.R;
-import com.baoyb.gittest.model.BybMobileModel;
 import com.baoyb.gittest.model.BybMobileSearchModel;
-import com.baoyb.gittest.model.BybNBAModel;
-import com.baoyb.gittest.model.BybNBATrModel;
 import com.baoyb.gittest.net.BybApiManager;
 import com.baoyb.gittest.net.BybRequestCallback;
 import com.baoyb.gittest.ui.base.BaseActivityFragment;
