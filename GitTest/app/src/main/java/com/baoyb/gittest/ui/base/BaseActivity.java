@@ -137,7 +137,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (isTranslucent) {
             // 设置状态栏全透明
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//                window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
                 window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
                 window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
                 window.setStatusBarColor(Color.TRANSPARENT);
@@ -152,12 +152,12 @@ public abstract class BaseActivity extends AppCompatActivity {
             //5.0以上使用原生方法
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(colorId);
+            window.setStatusBarColor(getResources().getColor(colorId));
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             //4.4-5.0使用三方工具类，有些4.4的手机有问题，这里为演示方便，不使用沉浸式
             this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             tintManager.setStatusBarTintEnabled(true);
-            tintManager.setStatusBarTintColor(colorId);
+            tintManager.setStatusBarTintColor(getResources().getColor(colorId));
         }
     }
 
@@ -203,22 +203,4 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     public abstract void initView();
 
-    private int isFirstBack = 1;
-    @Override
-    public void onBackPressed() {
-        if (isFirstBack == 1) {
-            ToastShowUtils.showTextToast("再按一次退出");
-            isFirstBack = 3;
-            //开启一个异步线程，当用户超过两秒没有再次点击返回键，则取消退出状态
-            new Timer().schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    isFirstBack = 1; // 取消退出
-                }
-            }, 1000);
-        } else if (isFirstBack == 3) {//单用户连续点击两次的时候，退出程序
-            this.finish();
-            System.exit(0);
-        }
-    }
 }

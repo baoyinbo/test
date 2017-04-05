@@ -73,6 +73,11 @@ public class BybVidioFragment extends BaseListFragment {
                 });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        initSystemBarTint(false, R.color.white);
+    }
     private void addOnLoadView() {
         View loadView =View.inflate(getContext(), R.layout.byb_comm_list_load_more, null);
         vidiosAdapter.setLoadingView(loadView);

@@ -144,7 +144,8 @@ public abstract class LazyFragment extends Fragment {
         }
 
         int statusBarHeight = config.getStatusBarHeight();
-        if (mChildView != null && mChildView.getLayoutParams() != null && mChildView.getLayoutParams().height == statusBarHeight) {
+        if (mChildView != null && mChildView.getLayoutParams() != null
+                && mChildView.getLayoutParams().height == statusBarHeight) {
             //移除假的 View.
             mContentView.removeView(mChildView);
             mChildView = mContentView.getChildAt(0);
@@ -175,12 +176,12 @@ public abstract class LazyFragment extends Fragment {
             //5.0以上使用原生方法
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(colorId);
+            window.setStatusBarColor(getResources().getColor(colorId));
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             //4.4-5.0使用三方工具类，有些4.4的手机有问题，这里为演示方便，不使用沉浸式
             this.getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             tintManager.setStatusBarTintEnabled(true);
-            tintManager.setStatusBarTintColor(colorId);
+            tintManager.setStatusBarTintColor(getResources().getColor(colorId));
         }
     }
 

@@ -57,6 +57,12 @@ public class BybMineFragment extends BaseFragment implements View.OnClickListene
         tvStyle = (TextView) findViewById(R.id.tvStyle);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        initSystemBarTint(false, R.color.head_background);
+    }
+
     private void initPtrFrameLayout() {
         ptrFrameLayout.setPtrHandler(new PtrHandler() {
             @Override
@@ -92,10 +98,6 @@ public class BybMineFragment extends BaseFragment implements View.OnClickListene
                 ToastShowUtils.showSuccessToast("微信登录");
                 break;
             case R.id.llCollection:
-                LaunchBody.Builder builder = new LaunchBody.Builder(BybMineFragment.this,
-                        BybNbaListFragment.class);
-                builder.launchType(LaunchBody.LaunchType.SINGLE_TOP);
-                CommomActivity.launch(builder);
                 break;
             case R.id.llHistory:
                 break;
@@ -113,7 +115,8 @@ public class BybMineFragment extends BaseFragment implements View.OnClickListene
                 this.getActivity().recreate();
                 break;
             case R.id.rlSystemSetting:
-//                LaunchBody.Builder builder = new LaunchBody.Builder(BybMineFragment.this, BybSystemSettingFragment.class);
+//                LaunchBody.Builder builder = new LaunchBody.Builder(BybMineFragment.this,
+//                        BybVidioViewFragment.class);
 //                builder.launchType(LaunchBody.LaunchType.SINGLE_TOP);
 //                CommomActivity.launch(builder);
 

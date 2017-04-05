@@ -29,7 +29,6 @@ public class BybHomeFragment extends BaseFragment {
 
     @Override
     public void initView(Bundle savedInstanceState) {
-        initSystemBarTint(false, R.color.background_red);
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         tabChannel = (TabLayout) findViewById(R.id.tabChannel);
         tabFragmentAdapter = new BybTabFragmentAdapter(channels, getActivity().getSupportFragmentManager());
@@ -55,4 +54,9 @@ public class BybHomeFragment extends BaseFragment {
         });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        initSystemBarTint(false, R.color.background_red);
+    }
 }

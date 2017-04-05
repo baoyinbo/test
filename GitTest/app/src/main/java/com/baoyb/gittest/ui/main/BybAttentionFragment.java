@@ -61,6 +61,12 @@ public class BybAttentionFragment extends BaseListFragment {
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        initSystemBarTint(false, R.color.white);
+    }
+
     private void test() {
         BybAttentionModel model1 =
                 new BybAttentionModel("NBA", "让我们一起关注nba赛事吧", "", BybNbaListFragment.class);

@@ -75,7 +75,7 @@ public class CommomActivity extends BaseActivity{
 
     @Override
     public void initView() {
-        initSystemBarTint(false, R.color.background_red);
+        initSystemBarTint(false, R.color.white);
         if (contentId == R.layout.byb_fra_comm_ui_container) {
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
