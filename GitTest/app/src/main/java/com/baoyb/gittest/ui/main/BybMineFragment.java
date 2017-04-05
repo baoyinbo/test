@@ -1,24 +1,15 @@
 package com.baoyb.gittest.ui.main;
 
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.baoyb.gittest.R;
 import com.baoyb.gittest.ui.base.BaseFragment;
-import com.baoyb.gittest.ui.base.CommomActivity;
-import com.baoyb.gittest.ui.base.LaunchBody;
-import com.baoyb.gittest.ui.mine.BybSystemSettingFragment;
-import com.baoyb.gittest.ui.nba.BybNbaListFragment;
 import com.baoyb.gittest.util.ToastShowUtils;
 import com.baoyb.gittest.view.WJPtrFrameLayout;
-
-import in.srain.cube.views.ptr.PtrClassicDefaultHeader;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 import in.srain.cube.views.ptr.PtrHandler;

@@ -4,21 +4,15 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.baoyb.gittest.R;
-import com.baoyb.gittest.model.BybHomeNewModel;
 import com.baoyb.gittest.model.BybVidioModel;
 import com.baoyb.gittest.model.BybVidiosModel;
 import com.baoyb.gittest.net.BybApiManager;
 import com.baoyb.gittest.net.BybRequestCallback;
-import com.baoyb.gittest.ui.base.BaseFragment;
 import com.baoyb.gittest.ui.base.BaseListFragment;
-import com.baoyb.gittest.ui.news.adapter.BybHomeNewsAdapter;
 import com.baoyb.gittest.ui.vidio.adapter.BybVidiosAdapter;
-import com.baoyb.gittest.util.StatusBarUtil;
-import com.chad.library.adapter.base.BaseQuickAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import okhttp3.Call;
 
