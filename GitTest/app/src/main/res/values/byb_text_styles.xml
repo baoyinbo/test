@@ -8,6 +8,10 @@
         <item name="android:textColor">@color/text_gray</item>
         <item name="android:textSize">@dimen/text_14dp</item>
     </style>
+    <style name="text_18_gray">
+        <item name="android:textColor">@color/text_gray</item>
+        <item name="android:textSize">@dimen/text_18dp</item>
+    </style>
 
     <style name="text_10_black">
         <item name="android:textColor">@color/text_black</item>
@@ -26,8 +30,21 @@
         <item name="android:textSize">@dimen/text_18dp</item>
     </style>
 
+    <style name="text_12_white_transparent">
+        <item name="android:textColor">@color/text_white_transparent</item>
+        <item name="android:textSize">@dimen/text_12dp</item>
+    </style>
+
     <style name="text_14_white">
         <item name="android:textColor">@color/text_white</item>
         <item name="android:textSize">@dimen/text_14dp</item>
+    </style>
+    <style name="text_18_white">
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:textSize">@dimen/text_18dp</item>
+    </style>
+    <style name="text_24_white">
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:textSize">@dimen/text_24dp</item>
     </style>
 </resources>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.baoyb.gittest.ui.common.BybDefaultLoadingView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/loadingView">
+    <LinearLayout
+        android:id="@+id/content_view"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:id="@+id/btnLocation"
+            style="@style/text_18_gray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="杭州"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:visibility="gone"
+            android:background="@drawable/byb_corners_dash_grey"/>
+
+        <RelativeLayout
+            android:id="@+id/llFutureWeather"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:padding="15dp"
+            android:background="@drawable/byb_weather_day_bg">
+            <TextView
+                style="@style/text_14_white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableRight="@mipmap/ic_next"
+                android:drawablePadding="5dp"
+                android:layout_alignParentRight="true"
+                android:text="未来5天天气"/>
+
+            <ImageView
+                android:id="@+id/ivWeatherLogo"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="30dp"
+                android:src="@mipmap/ic_weather_logo"/>
+
+            <TextView
+                android:id="@+id/tvTitle"
+                style="@style/text_18_white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/ivWeatherLogo"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="-18dp"
+                android:text="实时天气"/>
+
+            <TextView
+                android:id="@+id/tvPm"
+                style="@style/text_14_white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/tvTitle"
+                android:layout_alignBaseline="@id/tvTitle"
+                android:layout_marginLeft="20dp"
+                android:padding="2dp"
+                android:background="@drawable/byb_corners_weather_orange"
+                android:text="119"/>
+            <TextView
+                android:id="@+id/tvTemperatureScrope"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/tvPm"
+                android:layout_alignBaseline="@id/tvTitle"
+                style="@style/text_14_white"
+                android:layout_marginLeft="20dp"
+                android:text="16~6"/>
+            <TextView
+                android:id="@+id/tvNowWeather"
+                style="@style/text_18_white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="周六 04月01日 (实时：12℃)"
+                android:layout_below="@id/tvTitle"
+                android:layout_alignLeft="@id/tvTitle"
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:id="@+id/tvWeatherAbout"
+                style="@style/text_14_white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvNowWeather"
+                android:layout_alignLeft="@id/tvTitle"
+                android:layout_marginTop="15dp"
+                android:text="多云转晴 北风微风"/>
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:text="生活指数"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:background="@drawable/byb_corners_dash_grey"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+</com.baoyb.gittest.ui.common.BybDefaultLoadingView>

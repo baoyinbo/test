@@ -103,4 +103,17 @@ public class BybApiManager {
         params.put("tel", mobile);
         requestManager.get(BybUrlDefines.URL_BASE_MOBILE_SEARCH, params, callback);
     }
+
+    /**
+     * 天气预报
+     * @param location
+     * @param callback
+     */
+    public void getWeatherSearch(String location, Callback callback) {
+        Map params = new HashMap();
+        params.put("location", location);
+        params.put("output", "json");
+        params.put("ak", BybUrlDefines.weatherKey);
+        requestManager.get(BybUrlDefines.URL_BASE_WEATHER, params, callback);
+    }
 }

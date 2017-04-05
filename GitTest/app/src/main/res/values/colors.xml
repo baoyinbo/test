@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#ffffff</color>
     <color name="colorPrimaryDark">#fff5f5f5</color>
-    <color name="colorAccent">#ffFF4081</color>
+    <color name="colorAccent">#ff999999</color>
     <color name="white">#ffffffff</color>
     <color name="transparent">#00000000</color>
     <!--波纹点击颜色-->
@@ -23,8 +23,16 @@
     <color name="text_light_gray">#ffaaaaaa</color>
     <color name="text_red">#ffed4c4d</color>
 
+    <color name="text_white_transparent">#77ffffff</color>
+
+
     <!--以下是按钮颜色-->
     <color name="button_red">#f55656</color>
     <color name="button_red_focus">#d54546</color>
     <color name="button_red_unenabled">#f2c7cb</color>
+
+    <color name="weather_pm_blue">#32cd32</color> <!--优-->
+    <color name="weather_pm_yellow">#d9d900</color> <!--良-->
+    <color name="weather_pm_orange">#ff7f00</color> <!--轻度-->
+    <color name="weather_pm_red">#ff2400</color> <!--重度-->
 </resources>

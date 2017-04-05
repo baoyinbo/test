@@ -12,7 +12,9 @@ import com.baoyb.gittest.net.BybApiManager;
 import com.baoyb.gittest.net.BybRequestCallback;
 import com.baoyb.gittest.ui.base.BaseActivityFragment;
 import com.baoyb.gittest.util.LogUtils;
+import com.baoyb.gittest.util.StringUtils;
 import com.baoyb.gittest.util.ToastShowUtils;
+import com.baoyb.gittest.view.ClearEditText;
 
 import okhttp3.Call;
 
@@ -21,9 +23,7 @@ import okhttp3.Call;
  */
 
 public class BybMobileSearchFragment extends BaseActivityFragment implements View.OnClickListener {
-    private EditText etMobile;
-    private Button btnMobileSearch;
-
+    private ClearEditText etMobile;
     private TextView tvMobile;
     private TextView tvProvince;
     private TextView tvCompany;
@@ -36,7 +36,7 @@ public class BybMobileSearchFragment extends BaseActivityFragment implements Vie
     @Override
     public void initView(Bundle savedInstanceState) {
         setTitle("号码查询");
-        etMobile = (EditText) findViewById(R.id.etMobile);
+        etMobile = (ClearEditText) findViewById(R.id.etMobile);
         findViewById(R.id.btnMobileSearch).setOnClickListener(this);
 
         tvMobile = (TextView) findViewById(R.id.tvMobile);
@@ -75,7 +75,13 @@ public class BybMobileSearchFragment extends BaseActivityFragment implements Vie
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnMobileSearch:
-                searchMobile(etMobile.getText().toString());
+                String mobile = etMobile.getText().toString();
+                if (!StringUtils.isPhoneNumbValid(mobile)) {
+                    etMobile.setShakeAnimation();
+                    ToastShowUtils.showTextToast("请输入正确的手机号码");
+                } else {
+                    searchMobile(etMobile.getText().toString());
+                }
                 break;
         }
     }
