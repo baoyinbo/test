@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.animation.AnticipateInterpolator;
 
 import com.baoyb.gittest.R;
 import com.baoyb.gittest.ui.common.BybDefaultLoadingView;
@@ -15,6 +16,7 @@ import in.srain.cube.views.ptr.PtrClassicDefaultHeader;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 import in.srain.cube.views.ptr.PtrHandler;
+import jp.wasabeef.recyclerview.adapters.SlideInBottomAnimationAdapter;
 
 /**
  * 列表功能的fragment
@@ -46,7 +48,6 @@ public abstract class BaseListFragment extends BaseFragment{
 //        recyclerView.addItemDecoration(new DividerGridItemDecoration(getActivity()));
         //设置增加或删除条目的动画
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
         onCreateListView(savedInstanceState);
     }
 
@@ -101,7 +102,13 @@ public abstract class BaseListFragment extends BaseFragment{
             }
         });
         this.adapter.openLoadMore(true);
-        recyclerView.setAdapter(this.adapter);
+//        recyclerView.setAdapter(this.adapter);
+
+        SlideInBottomAnimationAdapter slideAdapter = new SlideInBottomAnimationAdapter(this.adapter);
+        slideAdapter.setFirstOnly(true);
+        slideAdapter.setDuration(500);
+        slideAdapter.setInterpolator(new AnticipateInterpolator(1f));
+        recyclerView.setAdapter(slideAdapter);
     }
 
     /**

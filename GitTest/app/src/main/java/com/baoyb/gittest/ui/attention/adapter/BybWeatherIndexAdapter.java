@@ -38,4 +38,6 @@ public class BybWeatherIndexAdapter extends BaseQuickAdapter<BybWeatherIndexMode
             baseViewHolder.setImageResource(R.id.ivIndex, R.mipmap.ic_todaycan_ultravioletrays);
         }
     }
+
+
 }
