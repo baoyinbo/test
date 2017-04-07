@@ -11,6 +11,7 @@ import com.baoyb.gittest.ui.attention.adapter.BybAttentionAdapter;
 import com.baoyb.gittest.ui.base.BaseListFragment;
 import com.baoyb.gittest.ui.base.CommomActivity;
 import com.baoyb.gittest.ui.base.LaunchBody;
+import com.baoyb.gittest.ui.mine.BybSystemSettingFragment;
 import com.baoyb.gittest.ui.nba.BybNbaListFragment;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
@@ -77,6 +78,9 @@ public class BybAttentionFragment extends BaseListFragment {
         BybAttentionModel model3 =
                 new BybAttentionModel("天气查询", "提前知天气，出门有准备", "", BybWeatherSearchFragment.class);
         attentionList.add(model3);
+        BybAttentionModel model4 =
+                new BybAttentionModel("test", "test test test test test", "", BybSystemSettingFragment.class);
+        attentionList.add(model4);
 
         adapter.setNewData(attentionList);
     }

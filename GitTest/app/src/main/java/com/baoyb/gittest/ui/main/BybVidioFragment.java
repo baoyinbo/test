@@ -10,10 +10,8 @@ import com.baoyb.gittest.net.BybApiManager;
 import com.baoyb.gittest.net.BybRequestCallback;
 import com.baoyb.gittest.ui.base.BaseListFragment;
 import com.baoyb.gittest.ui.vidio.adapter.BybVidiosAdapter;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import okhttp3.Call;
 
 

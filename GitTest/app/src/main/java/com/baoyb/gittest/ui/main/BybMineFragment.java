@@ -10,6 +10,7 @@ import com.baoyb.gittest.R;
 import com.baoyb.gittest.ui.base.BaseFragment;
 import com.baoyb.gittest.ui.base.CommomActivity;
 import com.baoyb.gittest.ui.base.LaunchBody;
+import com.baoyb.gittest.ui.mine.BybMapViewFragment;
 import com.baoyb.gittest.ui.mine.BybSystemSettingFragment;
 import com.baoyb.gittest.util.ToastShowUtils;
 import com.baoyb.gittest.view.WJPtrFrameLayout;
@@ -110,7 +111,7 @@ public class BybMineFragment extends BaseFragment implements View.OnClickListene
                 break;
             case R.id.rlSystemSetting:
                 LaunchBody.Builder builder = new LaunchBody.Builder(BybMineFragment.this,
-                        BybSystemSettingFragment.class);
+                        BybMapViewFragment.class);
                 builder.launchType(LaunchBody.LaunchType.SINGLE_TOP);
                 CommomActivity.launch(builder);
 
