@@ -15,10 +15,13 @@
         <ImageView
             android:id="@+id/ivVidio"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
+            android:minHeight="200dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
             android:layout_marginTop="15dp"
             android:src="@mipmap/ic_launcher"/>
-        <LinearLayout
+        <!--<LinearLayout
             android:layout_marginTop="10dp"
             android:layout_marginBottom="5dp"
             android:layout_width="match_parent"
@@ -37,7 +40,7 @@
                 style="@style/textNewsListTips"
                 android:layout_marginLeft="20dp"
                 android:text="3小时前" />
-        </LinearLayout>
+        </LinearLayout>-->
     </LinearLayout>
     <View
         android:layout_width="match_parent"

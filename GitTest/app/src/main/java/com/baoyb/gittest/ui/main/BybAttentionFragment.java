@@ -6,6 +6,7 @@ import android.view.View;
 import com.baoyb.gittest.R;
 import com.baoyb.gittest.model.BybAttentionModel;
 import com.baoyb.gittest.ui.attention.BybMobileSearchFragment;
+import com.baoyb.gittest.ui.attention.BybStaggeredGridLayoutFragment;
 import com.baoyb.gittest.ui.attention.BybWeatherSearchFragment;
 import com.baoyb.gittest.ui.attention.adapter.BybAttentionAdapter;
 import com.baoyb.gittest.ui.base.BaseListFragment;
@@ -81,6 +82,15 @@ public class BybAttentionFragment extends BaseListFragment {
         BybAttentionModel model4 =
                 new BybAttentionModel("test", "test test test test test", "", BybSystemSettingFragment.class);
         attentionList.add(model4);
+        BybAttentionModel model5 =
+                new BybAttentionModel("瀑布流图片test", "EasyRecyclerView-test", "",
+                        BybStaggeredGridLayoutFragment.class);
+        attentionList.add(model5);
+
+        BybAttentionModel model6 =
+                new BybAttentionModel("MVVM模式test", "让我们练习下mvvm架构吧", "",
+                        BybStaggeredGridLayoutFragment.class);
+        attentionList.add(model6);
 
         adapter.setNewData(attentionList);
     }

@@ -45,6 +45,7 @@ public class BybMapViewFragment extends BaseActivityFragment implements Location
 
     @Override
     public void initView(Bundle savedInstanceState) {
+        getCurrentPage().setSwipeEdgePercent(0.5f);
         mapView = (MapView) findViewById(R.id.map);
         mapView.onCreate(savedInstanceState);
 

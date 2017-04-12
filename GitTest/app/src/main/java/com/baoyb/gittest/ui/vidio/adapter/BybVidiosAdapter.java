@@ -26,12 +26,11 @@ public class BybVidiosAdapter extends BaseQuickAdapter<BybVidiosModel> {
 
     @Override
     protected void convert(BaseViewHolder helper, BybVidiosModel item) {
-        helper.setText(R.id.tvNewsSrc, item.getWho());
-        helper.setText(R.id.tvNewsCountComment, "100评论");
-        helper.setText(R.id.tvNewsTime, item.getCreatedAt());
+//        helper.setText(R.id.tvNewsSrc, item.getWho());
+//        helper.setText(R.id.tvNewsCountComment, "100评论");
+//        helper.setText(R.id.tvNewsTime, item.getCreatedAt());
         Glide.with(context).load(item.getUrl()).asBitmap()
-                .diskCacheStrategy(DiskCacheStrategy.RESULT)
-                .centerCrop()
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into((ImageView) helper.getView(R.id.ivVidio));
     }
 
