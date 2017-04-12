@@ -1,11 +1,13 @@
 package com.baoyb.gittest.ui.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import com.baoyb.gittest.R;
 import com.baoyb.gittest.model.BybAttentionModel;
 import com.baoyb.gittest.ui.attention.BybMobileSearchFragment;
+import com.baoyb.gittest.ui.attention.BybMvvmModelTestFragment;
 import com.baoyb.gittest.ui.attention.BybStaggeredGridLayoutFragment;
 import com.baoyb.gittest.ui.attention.BybWeatherSearchFragment;
 import com.baoyb.gittest.ui.attention.adapter.BybAttentionAdapter;
@@ -44,10 +46,17 @@ public class BybAttentionFragment extends BaseListFragment {
                 new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View view, int i) {
-                LaunchBody.Builder builder = new LaunchBody.Builder(BybAttentionFragment.this,
-                        attentionList.get(i).getClazz());
-                builder.launchType(LaunchBody.LaunchType.SINGLE_TOP);
-                CommomActivity.launch(builder);
+                if (attentionList.get(i).getClazz().getSimpleName().contains("BybMvvmModel")) {
+                    Intent intent = new Intent();
+                    intent.setClass(BybAttentionFragment.this.getContext(), attentionList.get(i).getClazz());
+                    startActivity(intent);
+                } else {
+                    LaunchBody.Builder builder = new LaunchBody.Builder(BybAttentionFragment.this,
+                            attentionList.get(i).getClazz());
+                    builder.launchType(LaunchBody.LaunchType.SINGLE_TOP);
+                    CommomActivity.launch(builder);
+                }
+
             }
         });
         test();
@@ -89,7 +98,7 @@ public class BybAttentionFragment extends BaseListFragment {
 
         BybAttentionModel model6 =
                 new BybAttentionModel("MVVM模式test", "让我们练习下mvvm架构吧", "",
-                        BybStaggeredGridLayoutFragment.class);
+                        BybMvvmModelTestFragment.class);
         attentionList.add(model6);
 
         adapter.setNewData(attentionList);
