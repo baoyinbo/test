@@ -1,6 +1,7 @@
 package com.baoyb.gittest.ui.base;
 
 import android.content.Context;
+import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;

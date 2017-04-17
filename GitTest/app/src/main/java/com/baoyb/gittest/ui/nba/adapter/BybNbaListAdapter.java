@@ -40,8 +40,10 @@ public class BybNbaListAdapter extends BaseSectionQuickAdapter<BybNBATrModel> {
         } else {
             baseViewHolder.setText(R.id.tvStatus, "已结束");
         }
-        GlideUtil.loadRoundImg(item.getPlayer1logobig(), (ImageView) baseViewHolder.getView(R.id.ivHomeLogo));
-        GlideUtil.loadRoundImg(item.getPlayer2logobig(), (ImageView) baseViewHolder.getView(R.id.ivCustomeLogo));
+        GlideUtil.loadRoundImg(item.getPlayer1logobig(),
+                (ImageView) baseViewHolder.getView(R.id.ivHomeLogo));
+        GlideUtil.loadRoundImg(item.getPlayer2logobig(),
+                (ImageView) baseViewHolder.getView(R.id.ivCustomeLogo));
         View llItem = baseViewHolder.getView(R.id.llItem);
         llItem.setOnClickListener(new View.OnClickListener() {
             @Override
