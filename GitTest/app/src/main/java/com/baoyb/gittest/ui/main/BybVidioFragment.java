@@ -8,8 +8,15 @@ import com.baoyb.gittest.model.BybVidioModel;
 import com.baoyb.gittest.model.BybVidiosModel;
 import com.baoyb.gittest.net.BybApiManager;
 import com.baoyb.gittest.net.BybRequestCallback;
+import com.baoyb.gittest.net.BybUrlDefines;
 import com.baoyb.gittest.ui.base.BaseListFragment;
+import com.baoyb.gittest.ui.base.CommomActivity;
+import com.baoyb.gittest.ui.base.LaunchBody;
+import com.baoyb.gittest.ui.common.BybWebViewFragment;
+import com.baoyb.gittest.ui.home.*;
 import com.baoyb.gittest.ui.vidio.adapter.BybVidiosAdapter;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
 import okhttp3.Call;
@@ -38,6 +45,19 @@ public class BybVidioFragment extends BaseListFragment {
         setAdapter(vidiosAdapter);
         addOnLoadView();
         refreshView();
+
+        vidiosAdapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
+            @Override
+            public void onItemClick(View view, int i) {
+                Bundle bundle = new Bundle();
+                bundle.putString("url", "http://172.16.5.53:8020/Helloworld/index.html");
+                LaunchBody.Builder builder = new LaunchBody.Builder(BybVidioFragment.this,
+                        BybWebViewFragment.class);
+                builder.bundle(bundle);
+                builder.launchType(LaunchBody.LaunchType.SINGLE_TOP);
+                CommomActivity.launch(builder);
+            }
+        });
     }
 
     private void refreshView() {

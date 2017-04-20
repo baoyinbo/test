@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:layout_gravity="center_vertical"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        style="@style/text_18_black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_gravity="center"
+        android:text="我的频道"/>
+
+    <TextView
+        android:id="@+id/tvTips"
+        style="@style/text_12_gray"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:text="拖拽可以排序"
+        android:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/tvChannelEdit"
+        android:layout_width="50dp"
+        android:layout_height="25dp"
+        android:background="@drawable/byb_corners_red"
+        style="@style/text_14_red"
+        android:gravity="center"
+        android:layout_weight="0"
+        android:layout_marginRight="15dp"
+        android:text="编辑"/>
+
+</LinearLayout>
