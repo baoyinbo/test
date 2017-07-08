@@ -2,6 +2,7 @@ package com.baoyb.gittest.ui.home;
 import android.os.Bundle;
 import android.view.View;
 
+import com.baoyb.defaultloadinglibrary.DefaultLoadingView;
 import com.baoyb.gittest.R;
 import com.baoyb.gittest.model.BybHomeNewModel;
 import com.baoyb.gittest.model.BybHomeNewsModel;
@@ -11,7 +12,6 @@ import com.baoyb.gittest.net.BybUrlDefines;
 import com.baoyb.gittest.ui.base.BaseListFragment;
 import com.baoyb.gittest.ui.base.CommomActivity;
 import com.baoyb.gittest.ui.base.LaunchBody;
-import com.baoyb.gittest.ui.common.BybDefaultLoadingView;
 import com.baoyb.gittest.ui.common.BybWebViewFragment;
 import com.baoyb.gittest.ui.news.adapter.BybHomeNewsAdapter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -31,7 +31,7 @@ public class BybTabFragment extends BaseListFragment {
     private static String CHANNEL;
     private static String cate_id;
     private int page = 1;
-    private BybDefaultLoadingView loadingView;
+    private DefaultLoadingView loadingView;
     public static BybTabFragment newInstance(String title) {
         Bundle bundle = new Bundle();
         bundle.putString("channel", title);
@@ -62,7 +62,7 @@ public class BybTabFragment extends BaseListFragment {
         addOnLoadView();
         setAdapter(newsAdapter);
         homeNewModelList = new ArrayList<BybHomeNewsModel>();
-        loadingView.loading();
+        loadingView.showLoading();
         refreshView();
 
     }
@@ -90,11 +90,12 @@ public class BybTabFragment extends BaseListFragment {
                     @Override
                     public void onError(Call call, Exception e, int id) {
                         completePullDownRefresh();
+                        loadingView.showErrorView();
                     }
 
                     @Override
                     public void onResponse(Object response, int id) {
-                        loadingView.content();
+                        loadingView.showContent();
                         completePullDownRefresh();
                         BybHomeNewModel model = (BybHomeNewModel)response;
                         homeNewModelList = model.getData();

@@ -8,8 +8,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.animation.AnticipateInterpolator;
 
+import com.baoyb.defaultloadinglibrary.DefaultLoadingView;
 import com.baoyb.gittest.R;
-import com.baoyb.gittest.ui.common.BybDefaultLoadingView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
 import in.srain.cube.views.ptr.PtrClassicDefaultHeader;
@@ -27,7 +27,7 @@ public abstract class BaseListFragment extends BaseFragment{
     private RecyclerView recyclerView;
     private BaseQuickAdapter adapter;
     private PtrFrameLayout ptrFrameLayout;
-    private BybDefaultLoadingView loadingView;
+    private DefaultLoadingView loadingView;
     @Override
     public int getLayoutId() {
         return R.layout.byb_fra_base_list;
@@ -35,7 +35,7 @@ public abstract class BaseListFragment extends BaseFragment{
 
     @Override
     public void initView(Bundle savedInstanceState) {
-        loadingView = (BybDefaultLoadingView) findViewById(R.id.loadingView);
+        loadingView = (DefaultLoadingView) findViewById(R.id.loadingView);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         ptrFrameLayout = (PtrFrameLayout) findViewById(R.id.refreshView);
         initPtrFrameLayout();
@@ -69,7 +69,7 @@ public abstract class BaseListFragment extends BaseFragment{
         ptrFrameLayout.addPtrUIHandler(header);
     }
 
-    protected BybDefaultLoadingView getLoadingView() {
+    protected DefaultLoadingView getLoadingView() {
         return loadingView;
     }
 

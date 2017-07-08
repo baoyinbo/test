@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.baoyb.gittest.ui.attention.BybWeatherSearchFragment;
 import com.baoyb.gittest.ui.base.BaseListActivityFragment;
 import com.baoyb.gittest.ui.home.adapter.BybChannelEditAdapter;
 

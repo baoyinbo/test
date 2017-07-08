@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.baoyb.defaultloadinglibrary.DefaultLoadingView;
 import com.baoyb.gittest.R;
 import com.baoyb.gittest.model.BybWeatherDataModel;
 import com.baoyb.gittest.model.BybWeatherIndexModel;
@@ -18,7 +19,6 @@ import com.baoyb.gittest.ui.attention.adapter.BybWeatherIndexAdapter;
 import com.baoyb.gittest.ui.base.BaseActivityFragment;
 import com.baoyb.gittest.ui.base.CommomActivity;
 import com.baoyb.gittest.ui.base.LaunchBody;
-import com.baoyb.gittest.ui.common.BybDefaultLoadingView;
 import com.baoyb.gittest.util.LogUtils;
 import com.baoyb.gittest.util.ToastShowUtils;
 import com.baoyb.gittest.util.WeatherPmUtils;
@@ -35,7 +35,7 @@ import okhttp3.Call;
  */
 
 public class BybWeatherSearchFragment extends BaseActivityFragment implements View.OnClickListener {
-    private BybDefaultLoadingView loadingView;
+    private DefaultLoadingView loadingView;
     private Button btnLocation;
     private View llFutureWeather; //未来5天天气
     private TextView tvPm;  //
@@ -59,7 +59,7 @@ public class BybWeatherSearchFragment extends BaseActivityFragment implements Vi
     @Override
     public void initView(Bundle savedInstanceState) {
         setTitle("天气情况");
-        loadingView = (BybDefaultLoadingView) findViewById(R.id.loadingView);
+        loadingView = (DefaultLoadingView) findViewById(R.id.loadingView);
         btnLocation = (Button) findViewById(R.id.btnLocation);
         btnLocation.setOnClickListener(this);
         llFutureWeather = findViewById(R.id.llFutureWeather);
@@ -90,7 +90,7 @@ public class BybWeatherSearchFragment extends BaseActivityFragment implements Vi
             }
         });
 
-        loadingView.loading();
+        loadingView.showLoading();
         searchWeather("杭州");
     }
 
@@ -139,7 +139,7 @@ public class BybWeatherSearchFragment extends BaseActivityFragment implements Vi
                         futureWeatherModels = weatherResultModel.getWeather_data();
                         todayWeatherModel = futureWeatherModels.get(0);
                         initData();
-                        loadingView.content();
+                        loadingView.showContent();
                     }
                 });
     }

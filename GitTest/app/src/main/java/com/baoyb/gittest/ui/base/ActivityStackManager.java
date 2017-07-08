@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.Stack;
 
 /**
+ * 栈管理类
  * Created by baoyb on 2017/3/24.
  */
 

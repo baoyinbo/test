@@ -11,6 +11,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.baoyb.defaultloadinglibrary.DefaultLoadingView;
 import com.baoyb.gittest.R;
 import com.baoyb.gittest.ui.base.BaseActivityFragment;
 
@@ -20,7 +21,7 @@ import com.baoyb.gittest.ui.base.BaseActivityFragment;
 
 public class BybWebViewFragment extends BaseActivityFragment {
     private WebView webView;
-    private BybDefaultLoadingView loadingView;
+    private DefaultLoadingView loadingView;
     private String url;
     @Override
     public int getLayoutId() {
@@ -29,7 +30,7 @@ public class BybWebViewFragment extends BaseActivityFragment {
 
     @Override
     public void initView(Bundle savedInstanceState) {
-        loadingView = (BybDefaultLoadingView) findViewById(R.id.loadingView);
+        loadingView = (DefaultLoadingView) findViewById(R.id.loadingView);
         webView = (WebView) findViewById(R.id.webview);
         confing();
         if (getArguments() != null) {
@@ -85,13 +86,13 @@ public class BybWebViewFragment extends BaseActivityFragment {
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
-                loadingView.loading();
+                loadingView.showLoading();
             }
 
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-                loadingView.content();
+                loadingView.showContent();
             }
         });
         webView.setWebChromeClient(new WebChromeClient() {

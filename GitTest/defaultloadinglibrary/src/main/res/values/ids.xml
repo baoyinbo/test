@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="loadingViewResId" type="id"></item>
+    <item name="noNetWorkViewResId" type="id"></item>
+    <item name="emptyViewResId" type="id"></item>
+    <item name="errorViewResId" type="id"></item>
+    <item name="contentViewResId" type="id"></item>
+    <item name="noNetWorkViewRetryId" type="id"></item>
+    <item name="emptyViewRetryId" type="id"></item>
+    <item name="errorViewRetryId" type="id"></item>
+</resources>

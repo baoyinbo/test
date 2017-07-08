@@ -44,7 +44,7 @@ public class BybNbaListFragment extends BaseListActivityFragment {
                 CommomActivity.launch(builder);
             }
         });
-        getLoadingView().loading();
+        getLoadingView().showLoading();
         refreshView();
     }
 
@@ -63,14 +63,14 @@ public class BybNbaListFragment extends BaseListActivityFragment {
                 new BybRequestCallback(BybNBAModel.class) {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-                        getLoadingView().content();
+                        getLoadingView().showErrorView();
                         completePullDownRefresh();
                         LogUtils.e(e.toString());
                     }
 
                     @Override
                     public void onResponse(Object response, int id) {
-                        getLoadingView().content();
+                        getLoadingView().showContent();
                         completePullDownRefresh();
                         BybNBAModel model = (BybNBAModel)response;
                         if (model != null && model.getResult() != null) {
